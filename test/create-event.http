@@ -1,0 +1,10 @@
+POST http://localhost:8000/events 
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTcxODc5MTExOSwidXNlcklkIjoxfQ.9oqAReq0NCiemoSrAN7cQj0sJFidx_R5BMPib4yIO-4
+
+{
+    "EventName": "Test Event 1",
+    "Description": "A test event description",
+    "Location": "Hyderabad",
+    "DateTime": "2024-08-22T15:30:00.000Z"
+}

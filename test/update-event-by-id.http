@@ -1,0 +1,10 @@
+PUT  http://localhost:8000/events/7
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTcxODc4OTQ3MywidXNlcklkIjoxfQ.WIUYySfbdhRSxT7hY_B2Vw5Htc4jpC9lEyx5lt5tIV8
+
+{
+    "EventName": "Test Event 6 (Updated)",
+    "Description": "A test event 6 description (Updated)",
+    "Location": "Hyderabad",
+    "DateTime": "2024-08-21T15:30:00.000Z"
+}

@@ -39,3 +39,22 @@ func UnregisterToEvent(userId int64, eventId int64) error {
 
 	return nil
 }
+
+func IsThisUsersEventExists(userId int64, eventId int64) error {
+	existCheckCommand := "SELECT * FROM REGISTRATION WHERE userId = ? AND eventId = ?"
+
+	stmt, err := db.AppDatabase.Prepare(existCheckCommand)
+	if err != nil {
+		return err
+	}
+
+	rows := stmt.QueryRow(userId, eventId)
+	var fetchedUserId, fetchedEventId int64
+	err = rows.Scan(&fetchedUserId, &fetchedEventId) // Successfully fetched means event exists
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

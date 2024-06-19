@@ -1,7 +1,9 @@
 package routes
 
 import (
+	"fmt"
 	"net/http"
+	"os/user"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sambasivareddy-ch/rest_api_go/models"
@@ -44,10 +46,19 @@ func unregisterUserHandler(ctx *gin.Context) {
 	userId := ctx.GetInt64("userId") // Get userId from context
 	registrationInfo.ID = userId
 
-	if err1 := models.UnregisterToEvent(userId, registrationInfo.EventId); err1 != nil {
+	err1 := models.IsThisUsersEventExists(userId, registrationInfo.EventId)
+	if err1 != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			"message": fmt.Sprintf("UserId %d is not registered for Event %d\n", userId, registrationInfo.EventId),
+		})
+		return
+	}
+
+	if err1 = models.UnregisterToEvent(userId, registrationInfo.EventId); err1 != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"message": "unable to unregister",
 		})
+		return
 	}
 
 	ctx.JSON(http.StatusCreated, gin.H{
